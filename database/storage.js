@@ -5,5 +5,8 @@ exports.storage = {
 
     getUsers: function(){
         return JSON.stringify(this.USERS)
+    },
+    getMessage: function(){
+        return JSON.stringify(this.MESSAGES)
     }
 }

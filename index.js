@@ -2,11 +2,14 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 uniqid = require('uniqid')
-const users = require("./routes/users");
+
 const {storage} = require("./database/storage");
+
+const users = require("./routes/users");
+const messages = require("./routes/message");
+
 /*
 const todo = require("./routes/todo");
-const messages = require("./routes/message");
 */
 
 
@@ -21,7 +24,7 @@ global.database = storage;
 
 app.use(api_version_url + "/users", users);
 //app.use(api_version_url + "/todo", todo);
-//app.use(api_version_url + "/message", messages);
+app.use(api_version_url + "/message", messages);
 
 
 app.get(api_version_url + "/", (req, res) => {
@@ -39,15 +42,8 @@ app.get(api_version_url + "/", (req, res) => {
             <li>
                 <b>POST /users</b>
                 <code>
-                    Create User <br/>
-                    {
-                        "name": string,
-                        "email": string,
-                        "username": string,
-                        "password": string,
-                        "image": string,
-                        "about": string
-                    }
+                    Create User 
+                    <br/>
                 </code>
             </li>
         </ul>

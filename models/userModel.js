@@ -14,6 +14,13 @@ const UserObject = {
     about: String
 };
 
+const message = {
+    sender: String,
+    receiver: String,
+    message: String,
+    id: String
+}
+
 class UserModel{
 
     constructor(user) {
@@ -31,7 +38,21 @@ class UserModel{
         return this._user;
     }
 }
+class MessageModel{
+
+    constructor(message) {
+        this._message = {
+            id:uniqid(),
+            ...message,
+            created_at: new Date().toISOString()
+        };
+    }
+
+    get message() {
+        return this._message;
+    }
+}
 module.exports = {
-   UserObject, UserModel
+   UserObject, UserModel, MessageModel
 };
 

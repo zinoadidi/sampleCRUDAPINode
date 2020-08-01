@@ -1,8 +1,9 @@
-const messageModel = require('../database/messageDB');
+const {MessageModel, MessageObject} = require("../models/messageModel");
+
 module.exports = {
     sendMessage: async(data) => {
         try {
-            const message = await messageModel.create(data);
+            const message = addMessageToDb(data);
             if (!message){
                 return {
                     message: 'Message creation failed',
@@ -17,6 +18,7 @@ module.exports = {
             }
 
         } catch (error) {
+            console.log(error)
             return {
                 status: 500,
                 message: 'Error Ocurred',
@@ -25,8 +27,16 @@ module.exports = {
         }
     },
     getMessage: async (criteria) => {
+        console.table(database.MESSAGES)
         try {
-            const messages = await messageModel.find(criteria);
+            let messages = [];
+            if (criteria.hasOwnProperty('sender') && criteria.hasOwnProperty('receiver')) {
+                messages = findMessageByPairIds(criteria.sender, criteria.receiver)
+            }
+
+            if (criteria.hasOwnProperty('userId')) {
+                messages = findMessageByUserId(criteria.userId)
+            }
 
             return {
                 status: 200,
@@ -42,3 +52,25 @@ module.exports = {
         }
     }
 }
+
+
+const findMessageByUserId = function (userId) {
+    let message = JSON.parse(database.getMessage());
+    return message.find(message => message.sender === userId || message.receiver === userId)
+}
+
+const findMessageByPairIds =function(firstUserId, secondUserId) {
+    let message = JSON.parse(database.getMessage());
+    let messageList = message.filter(
+        function(message){return message.sender === firstUserId || message.receiver === firstUserId ||
+            message.sender === secondUserId || message.receiver === secondUserId}
+    )
+    return messageList;
+}
+
+const addMessageToDb = function(message){
+    message = new MessageModel(message).message;
+    database.MESSAGES.push(message)
+    return {...message}
+}
+

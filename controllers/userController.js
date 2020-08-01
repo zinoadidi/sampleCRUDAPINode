@@ -1,6 +1,6 @@
 const {UserModel, UserObject} = require("../models/userModel");
 const {statusCodes, logger, errorMessages} =   require('../utility/response')
-const {badRequest, serverError, success, notFound } = statusCodes
+const {badRequest, serverError, success, notFound, created } = statusCodes
 const crypto = require('crypto')
 
 
@@ -22,7 +22,7 @@ exports.register = async function(data){
     }
 
     let newUser = addUserToDb(data)
-    response.statusCode = success
+    response.statusCode = created
     response.message = newUser.name + " Created Successfully"
     response.data = removeSensitiveFields(newUser)
     
@@ -88,6 +88,7 @@ exports.authenticate = async function(data){
         let userData = findUserByEmail(data.email);
 
         if (!userData){
+            response.statusCode = 404;
             throw new Error("USER_NOT_FOUND")
         }
 
@@ -99,9 +100,7 @@ exports.authenticate = async function(data){
         response.message = "Login Successfully"
         response.data = removeSensitiveFields(userData)
     }catch(ex){
-        let errorMessage = errorMessages[ex.message];
-        response.statusCode = errorMessage.statusCode || badRequest
-        response.message =  errorMessage.message || ex.message
+        response.message =  ex.message
         response.data = null
         logger(ex)
     }
@@ -114,7 +113,7 @@ exports.updateUser = async function(data){
     try {
 
         if (!data.hasOwnProperty('email') || !data.hasOwnProperty('name')  ||
-            !data.hasOwnProperty('location') || !data.hasOwnProperty('password') ) {
+            !data.hasOwnProperty('location') ) {
             throw new Error("PROVIDE_REQUIRED_FIELDS")
         }
         if(!findUserByEmail(data.email)){
@@ -122,17 +121,21 @@ exports.updateUser = async function(data){
         }
 
         data = removeSensitiveFields(data)
-
         const updatedUser = database.USERS.filter((user)=>{
             if(user.id === data.id){
-                user = data
+                user.name = data.name
+                user.phone = data.phone
+                user.about =  data.about
+                user.location = data.location
+                user.image = data.image
+                user.updated_at = new Date().toISOString()
                 return user;
             }
         })
-//
+
         response.statusCode = success
-        response.message = updatedUser.name + " Updated Successfully"
-        response.data = updatedUser
+        response.message = "Updated Successful"
+        response.data = removeSensitiveFields({...updatedUser[0]})
 
     }catch(ex){
         let errorMessage = errorMessages[ex.message];
@@ -146,11 +149,13 @@ exports.updateUser = async function(data){
 }
 
 function findUserById(id) {
-    return database.USERS.find(user => user.id === id)
+    let users = JSON.parse(database.getUsers());
+    return users.find(user => user.id === id)
 }
 
 function findUserByEmail(email) {
-    return database.USERS.find(user => user.email === email)
+    let users = JSON.parse(database.getUsers());
+    return users.find(user => user.email === email)
 }
 
 function addUserToDb(user){
@@ -183,57 +188,3 @@ const hashPassword = function(password){
         return ex
     }
 };
-/*
-
-exports.updatePassword = async function(req){
-  var data = req.body
-  var response = {}
-  // validity check
-
-  try {
-    if (!data.email && !data.newPassword  && (!data.oldPassword || !data.verificationCode) ){
-      throw new Error("Please provide required fields: " )
-    }
-  }catch(ex){
-    response.statusCode = util.statusCodes.badRequest
-    response.message =  ex.message
-    response.success = false
-    response.data = null
-    util.logger(ex)
-    return response
-  }
-
-  try {
-    const changeUserPass = await userService.changePassword(data)
-
-      if (!changeUserPass['ok']) {
-          msg = changeUserPass.toString()
-            console.log(changeUserPass)
-          response.statusCode = util.statusCodes.badRequest
-          response.message = msg
-          response.success = false
-          response.data = null
-      } else {
-          response.statusCode = util.statusCodes.success
-          response.message = data.email + " Password Updated Successfully"
-          response.success = true
-          response.data = {}
-
-      }
-      return response
-
-  } catch (ex) {
-    util.logger(ex)
-    if (response.message !== "") {
-    } else {
-      if (ex.errors) {
-        msg = util.processErrorMessage(ex.errors)
-      } else {
-        response.message = ex
-      }
-    }
-    return response
-  }
-
-}
-*/
