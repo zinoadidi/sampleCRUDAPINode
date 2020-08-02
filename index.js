@@ -18,7 +18,7 @@ app.use(cors());
 app.use(bodyParser.json({ limit: "20mb" }));
 
 const api_version_url = "/api/v1";
-const http_port = 3000;
+const http_port = 80;
 
 global.database = storage;
 
@@ -31,22 +31,7 @@ app.get(api_version_url + "/", (req, res) => {
     res.send(`
         <h1>Welcome to Sample CRUD API</h1>
         <h2>API Documentation </h2>
-        <ul>
-            <header>/users</header>
-            <li>
-                <b>GET /users</b>
-                <code>
-                    Return all users
-                </code>
-            </li>
-            <li>
-                <b>POST /users</b>
-                <code>
-                    Create User 
-                    <br/>
-                </code>
-            </li>
-        </ul>
+        <a href="https://www.getpostman.com/collections/d0c25607a5a71e79bd34">API Documentation Postman</a>
     `);
 });
 

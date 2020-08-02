@@ -1,0 +1,624 @@
+{
+	"info": {
+		"_postman_id": "03cabc61-4781-4286-9846-0207549f6aac",
+		"name": "SampleCRUDAPINode",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "users/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Zino Adidi\",\r\n    \"location\": \"Tallinn\",\r\n    \"phone\": \"57853542\",\r\n    \"image\": \"https://i.stack.imgur.com/vqUdB.jpg?s=48&g=1\",\r\n    \"email\": \"zinoadidi@gmail.com\",\r\n    \"password\": \"mypassword\",\r\n    \"about\": \"the guy down the street\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Zino Adidi\",\r\n    \"location\": \"Tallinn\",\r\n    \"phone\": \"57853542\",\r\n    \"image\": \"\",\r\n    \"email\": \"zinoadidi@gmail.com\",\r\n    \"password\": \"mypassword\",\r\n    \"about\": \"the guy down the street\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/users/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "366"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16e-3t/r/v00l9aSZBpohSRXMwVzWoc\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jul 2020 20:49:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Zino Adidi Created Successfully\",\n    \"data\": {\n        \"id\": \"3cbyaskdapabps\",\n        \"name\": \"Zino Adidi\",\n        \"location\": \"Tallinn\",\n        \"phone\": \"57853542\",\n        \"image\": \"\",\n        \"email\": \"zinoadidi@gmail.com\",\n        \"about\": \"the guy down the street\",\n        \"last_login\": \"2020-07-31T20:49:46.191Z\",\n        \"updated_at\": \"2020-07-31T20:49:46.191Z\",\n        \"created_at\": \"2020-07-31T20:49:46.191Z\",\n        \"status\": \"Active\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "users/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get all users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/users/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "365"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16d-EayQdRLzDi5EwYkXKcwL1ral7R0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jul 2020 20:49:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Users Retrieved Successfully\",\n    \"data\": [\n        {\n            \"id\": \"3cbyaskdapabps\",\n            \"name\": \"Zino Adidi\",\n            \"location\": \"Tallinn\",\n            \"phone\": \"57853542\",\n            \"image\": \"\",\n            \"email\": \"zinoadidi@gmail.com\",\n            \"about\": \"the guy down the street\",\n            \"last_login\": \"2020-07-31T20:49:46.191Z\",\n            \"updated_at\": \"2020-07-31T20:49:46.191Z\",\n            \"created_at\": \"2020-07-31T20:49:46.191Z\",\n            \"status\": \"Active\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "users/id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/3cbyaskdapabps",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"3cbyaskdapabps"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "users/id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/users/3cbyaskdapabps",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"3cbyaskdapabps"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "363"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16b-VIS9MyZS0XUKEZYScrxEG8o8EtY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jul 2020 20:49:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Users Retrieved Successfully\",\n    \"data\": {\n        \"id\": \"3cbyaskdapabps\",\n        \"name\": \"Zino Adidi\",\n        \"location\": \"Tallinn\",\n        \"phone\": \"57853542\",\n        \"image\": \"\",\n        \"email\": \"zinoadidi@gmail.com\",\n        \"about\": \"the guy down the street\",\n        \"last_login\": \"2020-07-31T20:49:46.191Z\",\n        \"updated_at\": \"2020-07-31T20:49:46.191Z\",\n        \"created_at\": \"2020-07-31T20:49:46.191Z\",\n        \"status\": \"Active\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "users/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"zinoadidi@gmail.com\",\r\n    \"password\": \"mypassword\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/authenticate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"authenticate"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "users/login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"zinoadidi@gmail.com\",\r\n    \"password\": \"mypassword\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/users/authenticate",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"authenticate"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "354"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"162-9RX9ZvNeiCqo1My5UY1u9En1PZU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jul 2020 21:21:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Login Successfully\",\n    \"data\": {\n        \"id\": \"3cbygt4kdaqf6rx\",\n        \"name\": \"Zino Adidi\",\n        \"location\": \"Tallinn\",\n        \"phone\": \"57853542\",\n        \"image\": \"\",\n        \"email\": \"zinoadidi@gmail.com\",\n        \"about\": \"the guy down the street\",\n        \"last_login\": \"2020-07-31T21:21:32.684Z\",\n        \"updated_at\": \"2020-07-31T21:21:32.684Z\",\n        \"created_at\": \"2020-07-31T21:21:32.684Z\",\n        \"status\": \"Active\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "users/id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"id\": \"6pt5srkdbh5y6b\",\n        \"name\": \"Zino Adidi\",\n        \"location\": \"Tallinn\",\n        \"phone\": \"57853542\",\n        \"image\": \"\",\n        \"email\": \"zinoadidi@gmail.com\",\n        \"about\": \"the guy who is chill\",\n        \"last_login\": \"2020-08-01T09:46:04.040Z\",\n        \"updated_at\": \"2020-08-01T09:46:04.040Z\",\n        \"created_at\": \"2020-08-01T09:46:04.040Z\",\n        \"status\": \"Active\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/6pt5srkdbh5y6b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"6pt5srkdbh5y6b"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "users/id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/v1/users/3cbyaskdapabps",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"3cbyaskdapabps"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "363"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16b-VIS9MyZS0XUKEZYScrxEG8o8EtY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jul 2020 20:49:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"message\": \"Users Retrieved Successfully\",\n    \"data\": {\n        \"id\": \"3cbyaskdapabps\",\n        \"name\": \"Zino Adidi\",\n        \"location\": \"Tallinn\",\n        \"phone\": \"57853542\",\n        \"image\": \"\",\n        \"email\": \"zinoadidi@gmail.com\",\n        \"about\": \"the guy down the street\",\n        \"last_login\": \"2020-07-31T20:49:46.191Z\",\n        \"updated_at\": \"2020-07-31T20:49:46.191Z\",\n        \"created_at\": \"2020-07-31T20:49:46.191Z\",\n        \"status\": \"Active\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "message",
+			"item": [
+				{
+					"name": "messages/send-message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"sender\": \"5d5eb57b729c871ca810a4b4\",\n\t\"receiver\": \"5d5eb9f1729c871ca810a4bc\",\n\t\"message\": \"test message : how are you\"\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/message/send-message",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"message",
+								"send-message"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "messages/send-message",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"sender\": \"5d5eb57b729c871ca810a4b4\",\n\t\"receiver\": \"5d5eb9f1729c871ca810a4bc\",\n\t\"message\": \"test message : how are you\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/v1/message/send-message",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"message",
+										"send-message"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "239"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ef-jAMk2+cVH6dmpRJXIVG5EVsbPZM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 01 Aug 2020 10:27:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Message created successfully\",\n    \"status\": 201,\n    \"data\": {\n        \"id\": \"6pt6rvkdbii3lm\",\n        \"sender\": \"5d5eb57b729c871ca810a4b4\",\n        \"receiver\": \"5d5eb9f1729c871ca810a4bc\",\n        \"message\": \"test message : how are you\",\n        \"created_at\": \"2020-08-01T10:27:37.785Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "message/get-message?query",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"sender\": \"\",\n\t\"receiver\": \"\",\n\t\"message\": \"test message\",\n\t\"message_id\": \"id of the model the message is on\"\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/message/get-message?receiver=5d5eb57b729c871ca810a4b4&sender=5d5eb9f1729c871ca810a4bc&userId=5d5eb57b729c871ca810a4b4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"message",
+								"get-message"
+							],
+							"query": [
+								{
+									"key": "receiver",
+									"value": "5d5eb57b729c871ca810a4b4"
+								},
+								{
+									"key": "sender",
+									"value": "5d5eb9f1729c871ca810a4bc"
+								},
+								{
+									"key": "userId",
+									"value": "5d5eb57b729c871ca810a4b4"
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
