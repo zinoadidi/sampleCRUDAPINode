@@ -61,10 +61,7 @@ const findMessageByUserId = function (userId) {
 
 const findMessageByPairIds =function(firstUserId, secondUserId) {
     let message = JSON.parse(database.getMessage());
-    let messageList = message.filter(
-        function(message){return message.sender === firstUserId || message.receiver === firstUserId ||
-            message.sender === secondUserId || message.receiver === secondUserId}
-    )
+    let messageList = message
     return messageList;
 }
 
