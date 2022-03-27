@@ -8,7 +8,7 @@ const crypto = require('crypto')
 exports.register = async function(data){
   let response = {}
   try {
-
+      data.location = 'Estonia';
       if (!data.hasOwnProperty('email') || !data.hasOwnProperty('name')  ||
           !data.hasOwnProperty('location') || !data.hasOwnProperty('password') ) {
           throw new Error("Please provide required fields ")
