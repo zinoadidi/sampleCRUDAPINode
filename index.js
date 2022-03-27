@@ -18,7 +18,7 @@ app.use(cors());
 app.use(bodyParser.json({ limit: "20mb" }));
 
 const api_version_url = "/api/v1";
-const http_port = 2016;
+const http_port = process.env.PORT;
 
 global.database = storage;
 
