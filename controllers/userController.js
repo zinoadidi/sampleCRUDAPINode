@@ -1,3 +1,4 @@
+const uniqid = require("uniqid");
 const {UserModel, UserObject} = require("../models/userModel");
 const {statusCodes, logger, errorMessages} =   require('../utility/response')
 const {badRequest, serverError, success, notFound, created } = statusCodes
@@ -97,6 +98,7 @@ exports.authenticate = async function(data){
         }
 
         response.statusCode = success
+        response.token = uniqid()
         response.message = "Login Successfully"
         response.data = removeSensitiveFields(userData)
     }catch(ex){
