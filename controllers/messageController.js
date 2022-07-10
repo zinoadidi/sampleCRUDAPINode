@@ -1,5 +1,5 @@
 const {MessageModel, MessageObject} = require("../models/messageModel");
-
+const userController = require('../controllers/userController');
 module.exports = {
     sendMessage: async(data) => {
         try {
@@ -70,10 +70,15 @@ const findMessageByUserId = function (userId) {
 
 const findMessageByPairIds =function(firstUserId, secondUserId) {
     let message = JSON.parse(database.getMessage());
-    return message.filter(message => 
+    let results = message.filter(message => 
     (message.sender === firstUserId || message.receiver === firstUserId) ||
     (message.sender === secondUserId || message.receiver === secondUserId)
     )
+    results.map((message)=> {
+        let userResponse = userController.getUserByUniqueId(message.sender);
+        message.sender = userResponse.data || message.sender;
+        return message;
+    })
 }
 
 const addMessageToDb = function(message){
