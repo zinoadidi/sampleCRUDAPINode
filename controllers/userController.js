@@ -63,6 +63,7 @@ exports.getUserByUniqueID = async function(data){
     let response = {}
     try {
     let id = data.id;
+    console.log(data)
     let userData = findUserByEmail(id) ? findUserByEmail(id) : findUserById(id);
 
     if (!userData){

@@ -60,7 +60,15 @@ module.exports = {
 
 const findMessageByRecieverId = function (recieverId) {
     let message = JSON.parse(database.getMessage());
-    return message.filter(message => message.receiver === recieverId)
+    let results = message.filter(message => message.receiver === recieverId)
+    results.map(async (message)=> {
+        let userResponse = await userController.getUserByUniqueID({id: message.sender});
+        console.log(userResponse)
+        message.sender = userResponse.data || message.sender;
+        return message;
+    })
+
+    return results;
 }
 
 const findMessageByUserId = function (userId) {
@@ -70,15 +78,10 @@ const findMessageByUserId = function (userId) {
 
 const findMessageByPairIds =function(firstUserId, secondUserId) {
     let message = JSON.parse(database.getMessage());
-    let results = message.filter(message => 
-    (message.sender === firstUserId || message.receiver === firstUserId) ||
+    return message.filter(message => 
+    (message.sender === firstUserId || message.receiver === firstUserId) &&
     (message.sender === secondUserId || message.receiver === secondUserId)
     )
-    results.map((message)=> {
-        let userResponse = userController.getUserByUniqueId(message.sender);
-        message.sender = userResponse.data || message.sender;
-        return message;
-    })
 }
 
 const addMessageToDb = function(message){
