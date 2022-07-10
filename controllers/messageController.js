@@ -60,18 +60,20 @@ module.exports = {
 
 const findMessageByRecieverId = function (recieverId) {
     let message = JSON.parse(database.getMessage());
-    return message.find(message => message.receiver === recieverId)
+    return message.filter(message => message.receiver === recieverId)
 }
 
 const findMessageByUserId = function (userId) {
     let message = JSON.parse(database.getMessage());
-    return message.find(message => message.sender === userId || message.receiver === userId)
+    return message.filter(message => message.sender === userId || message.receiver === userId)
 }
 
 const findMessageByPairIds =function(firstUserId, secondUserId) {
     let message = JSON.parse(database.getMessage());
-    let messageList = message
-    return messageList;
+    return message.filter(message => 
+    (message.sender === firstUserId || message.receiver === firstUserId) ||
+    (message.sender === secondUserId || message.receiver === secondUserId)
+    )
 }
 
 const addMessageToDb = function(message){
