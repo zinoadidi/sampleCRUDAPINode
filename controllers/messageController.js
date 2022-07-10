@@ -37,6 +37,10 @@ module.exports = {
             if (criteria.hasOwnProperty('userId')) {
                 messages = findMessageByUserId(criteria.userId)
             }
+            
+            if (criteria.hasOwnProperty('isGroupMessage')) {
+                messages = findMessageByRecieverId(criteria.receiver)
+            }
 
             return {
                 status: 200,
@@ -53,6 +57,11 @@ module.exports = {
     }
 }
 
+
+const findMessageByRecieverId = function (recieverId) {
+    let message = JSON.parse(database.getMessage());
+    return message.find(message => message.receiver === recieverId)
+}
 
 const findMessageByUserId = function (userId) {
     let message = JSON.parse(database.getMessage());
